@@ -1,9 +1,9 @@
 import time
 import openai
-from openai import OpenAI
 import streamlit as st
+
 client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-  
+
 def get_resume_feedback(resume_text, jd_text):
     max_retries = 3
 
@@ -43,4 +43,3 @@ Please provide detailed suggestions to improve the resume so it aligns better wi
             break  # Stop retrying on unknown errors
 
     return "⚠️ We're currently sending too many requests to OpenAI. Please try again later."
-
