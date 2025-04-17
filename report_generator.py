@@ -1,9 +1,16 @@
 from fpdf import FPDF
+import os
 
 def generate_pdf(email, phone, skills, jd_skills, match_score, missing_skills, gpt_feedback):
     pdf = FPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
+
+    font_path = "DejaVuSans.ttf"
+    if not os.path.exists(font_path):
+        raise FileNotFoundError("DejaVuSans.ttf not found. Please download and place it in your project directory.")
+
+    pdf.add_font("DejaVu", "", font_path, uni=True)
+    pdf.set_font("DejaVu", size=12)
 
     pdf.cell(200, 10, txt="Resume Analysis Report", ln=True, align='C')
     pdf.ln(10)
@@ -28,4 +35,5 @@ def generate_pdf(email, phone, skills, jd_skills, match_score, missing_skills, g
     pdf.cell(200, 10, txt="GPT Suggestions:", ln=True)
     pdf.multi_cell(0, 10, txt=gpt_feedback or "No feedback generated.")
 
-    return pdf.output(dest='S').encode('latin-1')
+    # Return as binary without encoding to latin-1
+    return pdf.output(dest='S').encode('utf-8')
