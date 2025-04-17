@@ -47,7 +47,8 @@ st.markdown('<p class="main-title">Smart Resume Analyzer</p>', unsafe_allow_html
 st.markdown('<p class="sub-title">Analyze your resume, match it with job descriptions, and get AI-powered suggestions.</p>', unsafe_allow_html=True)
 st.markdown("<hr><center>Made with ❤ by Abdullah Tarek</center>", unsafe_allow_html=True)
 
-skill_list = ["Python", "Java", "C++", "SQL", "TensorFlow", "Pandas", "Flask", "Django", "AWS", "React"]
+skill_list = ["Python", "Java", "C++", "SQL", "TensorFlow", "Pandas", "Flask", "Django", "AWS", "React", "Dart", "JavaScript", "Flutter", "Firebase",
+    "ESP32", "MQTT", "TinkerCAD", "Wokwi", "NumPy","Matplotlib", "Scikit-learn", "Git", "GitHub", "PlatformIO"]
 sample_feedback_list = [
     "Consider adding more quantifiable achievements to your experience section.",
     "Mention relevant tools like JIRA, Git, or Docker if you’ve used them.",
