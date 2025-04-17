@@ -1,8 +1,7 @@
 import openai
 import os
-
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
+import streamlit as st
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 def get_resume_feedback(resume_text, jd_text):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
