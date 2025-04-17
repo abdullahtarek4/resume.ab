@@ -46,6 +46,19 @@ st.markdown('<p class="sub-title">Analyze your resume, match it with job descrip
 st.markdown("<hr><center>Made with ❤ by Abdullah Tarek</center>", unsafe_allow_html=True)
 
 skill_list = ["Python", "Java", "C++", "SQL", "TensorFlow", "Pandas", "Flask", "Django", "AWS", "React"]
+sample_feedback_list = [
+    "Consider adding more quantifiable achievements to your experience section.",
+    "Mention relevant tools like JIRA, Git, or Docker if you’ve used them.",
+    "Tailor your summary to align more with the job description.",
+    "Try to highlight leadership or collaborative work in your projects.",
+    "Include certifications related to cloud platforms or data science if you have them.",
+    "Use more action verbs like 'developed', 'designed', or 'implemented'.",
+    "Ensure your resume format is consistent and easy to scan quickly.",
+    "You can strengthen your resume by showcasing soft skills like communication or teamwork.",
+    "Include project outcomes or metrics to demonstrate impact (e.g., 'Increased efficiency by 25%').",
+    "Customize your resume keywords to match those found in the job description."
+]
+
 
 with st.container():
     st.markdown('<p class="section-header">1. Upload Resume</p>', unsafe_allow_html=True)
@@ -81,9 +94,9 @@ if uploaded_file is not None:
         feedback = ""
         if st.button("Get AI Suggestions to Improve Resume"):
             with st.spinner("Analyzing with GPT..."):
-                feedback = get_resume_feedback(text, jd_text)
-            st.subheader("GPT Feedback")
-            st.write(feedback)
+                feedback = random.choice(sample_feedback_list)
+                st.subheader("Demo GPT Feedback")
+                st.write(feedback)
 
         if feedback:
             pdf_bytes = generate_pdf(
