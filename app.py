@@ -4,7 +4,6 @@ from get_suggestions import get_resume_feedback
 from report_generator import generate_pdf
 import random
 
-
 st.set_page_config(page_title="Smart Resume Analyzer", layout="wide")
 
 st.markdown(
@@ -70,6 +69,10 @@ with st.container():
 if uploaded_file is not None:
     text = extract_resume_text(uploaded_file)
     skills = extract_skills(text, skill_list)
+
+    # DEBUG: Show extracted text
+    st.markdown('<p class="section-header">Debugging: Raw Resume Text</p>', unsafe_allow_html=True)
+    st.text_area("Extracted Resume Text", text, height=300)
 
     with st.container():
         st.markdown('<p class="section-header">2. Extracted Information</p>', unsafe_allow_html=True)
