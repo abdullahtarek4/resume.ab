@@ -15,26 +15,25 @@ except OSError:
 def extract_resume_text(file):
     return extract_text(file)
 
+def clean_text(text):
+    # Remove special symbols and normalize
+    return re.sub(r'[|•–—▪●]', ' ', text)
+
 def extract_email(text):
-    # Find all emails (better regex)
-    emails = re.findall(r'\b[\w\.-]+@[\w\.-]+\.\w+\b', text)
+    text = clean_text(text)
+    emails = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+', text)
     return emails[0] if emails else None
 
 def extract_phone(text):
-    # Match international/local numbers
-    phones = re.findall(r'(\+?\d{1,3}[-\s]?)?(\(?\d{2,4}\)?[-\s]?)?\d{6,12}', text)
-    if phones:
-        # Join tuples and return first valid number
-        for phone_tuple in phones:
-            phone = ''.join(phone_tuple).replace(" ", "").replace("-", "")
-            if len(phone) >= 10:
-                return phone
+    text = clean_text(text)
+    phones = re.findall(r'(?:\+?\d{1,3})?[ -]?\(?\d{2,4}\)?[ -]?\d{3,4}[ -]?\d{3,4}', text)
+    for phone in phones:
+        digits = re.sub(r'\D', '', phone)
+        if 10 <= len(digits) <= 15:
+            return phone.strip()
     return None
 
 def extract_skills(text, skill_list):
-    skills_found = []
     text = text.lower()
-    for skill in skill_list:
-        if skill.lower() in text:
-            skills_found.append(skill)
-    return list(set(skills_found))
+    found = [skill for skill in skill_list if skill.lower() in text]
+    return list(set(found))
