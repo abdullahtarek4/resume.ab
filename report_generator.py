@@ -33,7 +33,7 @@ def generate_pdf(email, phone, skills, jd_skills, match_score, missing_skills, g
     pdf.ln(5)
 
     pdf.cell(200, 10, txt="GPT Suggestions:", ln=True)
-    pdf.multi_cell(0, 10, txt=gpt_feedback or "No feedback generated.")
+    pdf.multi_cell(0, 10, txt=gpt_feedback if gpt_feedback and "too many requests" not in gpt_feedback else "⚠️ GPT feedback unavailable due to rate limits.")
 
-    # Return as binary without encoding to latin-1
-    return pdf.output(dest='S').encode('utf-8')
+    # Return PDF binary as bytes (no encode needed)
+    return pdf.output(dest='S').encode('latin-1')
