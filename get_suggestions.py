@@ -1,9 +1,8 @@
 import time
 import openai
 from openai import OpenAI
-
-# Initialize your OpenAI client with your key securely
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+import streamlit as st
+client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
   
 def get_resume_feedback(resume_text, jd_text):
     max_retries = 3
