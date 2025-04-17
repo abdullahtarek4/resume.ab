@@ -2,6 +2,8 @@ import streamlit as st
 from resume_parser import extract_resume_text, extract_email, extract_phone, extract_skills
 from get_suggestions import get_resume_feedback
 from report_generator import generate_pdf
+import random
+
 
 st.set_page_config(page_title="Smart Resume Analyzer", layout="wide")
 
