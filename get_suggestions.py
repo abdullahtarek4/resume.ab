@@ -7,7 +7,7 @@ client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 def get_resume_feedback(resume_text, jd_text):
     max_retries = 5
-    base_delay = 45
+    base_delay = 12
 
     for attempt in range(max_retries):
         try:
