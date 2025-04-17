@@ -16,12 +16,12 @@ def extract_resume_text(file):
     return extract_text(file)
 
 def clean_text(text):
-    # Remove special symbols and normalize
     return re.sub(r'[|•–—▪●]', ' ', text)
 
 def extract_email(text):
     text = clean_text(text)
     emails = re.findall(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+', text)
+    print("Emails Found:", emails)
     return emails[0] if emails else None
 
 def extract_phone(text):
@@ -35,5 +35,6 @@ def extract_phone(text):
 
 def extract_skills(text, skill_list):
     text = text.lower()
-    found = [skill for skill in skill_list if skill.lower() in text]
+    words = re.findall(r'\w+', text)
+    found = [skill for skill in skill_list if skill.lower() in words]
     return list(set(found))
